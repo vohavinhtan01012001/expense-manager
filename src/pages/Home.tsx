@@ -13,18 +13,21 @@ export default function Home() {
   const [expenses, setExpenses] = useState<ExpenseType[]>([]);
   const [selectedExpense, setSelectedExpense] = useState<ExpenseType | null>(null)
   const [showModal, setShowModal] = useState(false)
+
   const columns: ColumnsType<ExpenseType> = [
     {
       title: "Ngày/Chí (dd/mm/yyyy)",
       dataIndex: "date",
       key: "date",
-      width: 120,
+      width: 140,
       fixed: "left",
     },
     {
       title: "Loại Chi Phí",
       dataIndex: "expenseType",
       key: "expenseType",
+      fixed: "left",
+      width: 140,
       render: (text: string) => {
         if (text.startsWith("- ")) {
           return <div style={{ paddingLeft: 16 }}>{text}</div>;
