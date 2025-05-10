@@ -6,7 +6,7 @@ interface ReusableTableProps<T> extends TableProps<T> {
   columns: TableProps<T>["columns"];
   rowKey?: string;
   showInternalPagination?: boolean;
-  pagination?: boolean;
+  isPagination?: boolean;
   currentPage?: number;
   totalCount?: number;
   pageSize?: number;
@@ -22,7 +22,7 @@ function Table<T extends object>({
   pageSize = 10,
   totalCount = 0,
   onPageChange,
-  pagination = true,
+  isPagination = true,
   ...rest
 }: ReusableTableProps<T>) {
   return (
@@ -30,13 +30,13 @@ function Table<T extends object>({
       dataSource={data}
       columns={columns}
       rowKey={rowKey}
-      pagination={pagination === false ? false : showInternalPagination ? {
+      pagination={isPagination === false ? false : showInternalPagination ? {
         current: currentPage,
         pageSize: pageSize,
         total: totalCount,
         onChange: onPageChange,
       } : undefined}
-      virtual={pagination === false}
+      virtual={isPagination === false}
       className="no-vertical-border"
       {...rest}
     />
