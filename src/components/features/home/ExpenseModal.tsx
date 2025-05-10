@@ -8,7 +8,7 @@ import DatePickerField from "../../shared/DatePickerField";
 import Input from "../../shared/Input";
 import InputNumberField from "../../shared/InputNumberField";
 import { FORMAT_MONEY } from "../../../constants/regex";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import type { ExpenseType } from "../../../types/expense";
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 
@@ -27,15 +27,16 @@ const ExpenseModal: React.FC<ExpenseModalProps> = ({
     defaultValues = null,
     onSubmit
 }) => {
+    const initValues = useMemo(() => ({
+        date: dayjs(),
+        cost: 0,
+        expenseType: "",
+        note: "",
+        quantity: 1,
+    }), []);
     const { control, handleSubmit, reset, formState: { errors } } = useForm<ExpenseFormType>({
         resolver: zodResolver(expenseSchema),
-        defaultValues: {
-            date: dayjs(),
-            cost: 0,
-            expenseType: "",
-            note: "",
-            quantity: 1,
-        }
+        defaultValues: initValues
     });
 
     useEffect(() => {
@@ -46,11 +47,14 @@ const ExpenseModal: React.FC<ExpenseModalProps> = ({
                 date: dateValue
             });
         }
-    }, [defaultValues, reset])
+        else {
+            reset(initValues);
+        }
+    }, [defaultValues, initValues, reset])
 
     const handleCancel = () => {
+        reset(initValues);
         onClose();
-        reset();
     };
 
     const onFormSubmit = async (values: ExpenseFormType) => {
@@ -61,9 +65,6 @@ const ExpenseModal: React.FC<ExpenseModalProps> = ({
         onSubmit?.(formatted);
         handleCancel();
     };
-
-
-
 
     return (
         <Modal
@@ -119,7 +120,7 @@ const ExpenseModal: React.FC<ExpenseModalProps> = ({
                                     className="!w-full"
                                     min={0}
                                     placeholder="Nhập số tiền"
-                                    formatter={(value) => `${value}`.replace(FORMAT_MONEY, ",")}
+                                    formatter={(value) => (value ? `${value}`.replace(FORMAT_MONEY, ",") : "")}
                                     error={errors.cost?.message}
                                 />
                             </div>
@@ -139,7 +140,6 @@ const ExpenseModal: React.FC<ExpenseModalProps> = ({
                                     required
                                     className="!w-full"
                                     min={1}
-                                    defaultValue={1}
                                     placeholder="1"
                                     error={errors.quantity?.message}
                                 />

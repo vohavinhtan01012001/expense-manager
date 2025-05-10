@@ -81,14 +81,6 @@
       "note": "Rather both PM represent begin..."
     },
     {
-      "id": "23",
-      "date": "01/05/2025",
-      "expenseType": "Chi phí marketing",
-      "cost": 927512,
-      "quantity": null,
-      "note": "Less professional ok early write..."
-    },
-    {
       "id": "24",
       "date": "09/03/2025",
       "expenseType": "Kép",
@@ -143,14 +135,6 @@
       "cost": 277100,
       "quantity": null,
       "note": "Through professional system recent..."
-    },
-    {
-      "id": "eb76",
-      "date": "08/05/2025",
-      "expenseType": "ád",
-      "cost": 12312312,
-      "quantity": 1,
-      "note": "12"
     }
   ]
 }

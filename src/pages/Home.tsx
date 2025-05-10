@@ -6,6 +6,7 @@ import type { ExpenseType } from "../types/expense";
 import { useEffect, useState } from "react";
 import { expenseApi } from "../api/expenses";
 import ExpenseModal from "../components/features/home/ExpenseModal";
+import dayjs from 'dayjs';
 
 
 export default function Home() {
@@ -92,7 +93,11 @@ export default function Home() {
     const fetchExpenses = async () => {
       try {
         const data = await expenseApi.getExpenses();
-        setExpenses(data);
+        setExpenses(
+          data.sort((a, b) =>
+            dayjs(b.date, "DD/MM/YYYY").diff(dayjs(a.date, "DD/MM/YYYY"))
+          )
+        );
       } catch (error) {
         console.error("Failed to fetch expenses:", error);
       }
@@ -110,7 +115,7 @@ export default function Home() {
       },
       onOk: async () => {
         try {
-          // await expenseApi.deleteExpense(id);
+          await expenseApi.deleteExpense(id);
           setExpenses(expenses.filter((expense) => expense.id !== id));
           notification.success({
             message: "Thành công",
@@ -156,14 +161,13 @@ export default function Home() {
       }
 
       setExpenses((prevExpenses) => {
-        if (selectedExpense) {
+        if (selectedExpense && selectedExpense.id) {
           return prevExpenses.map((expense) =>
             expense.id === result.id ? result : expense
           );
         }
-        return [...prevExpenses, result];
+        return [result, ...prevExpenses];
       });
-
       handleClose();
     } catch (error) {
       notification.error({
