@@ -1,0 +1,1 @@
+export const FORMAT_MONEY = /\B(?=(\d{3})+(?!\d))/g

@@ -1,0 +1,156 @@
+{
+  "expenses": [
+    {
+      "id": "12",
+      "date": "08/02/2025",
+      "expenseType": "Méteg dán ngực",
+      "cost": 259541,
+      "quantity": 58,
+      "note": "End budget green term..."
+    },
+    {
+      "id": "14",
+      "date": "12/01/2025",
+      "expenseType": "Kép",
+      "cost": 471703,
+      "quantity": 60,
+      "note": "Window avoid prevent act high."
+    },
+    {
+      "id": "15",
+      "date": "20/03/2025",
+      "expenseType": "Hộp đựng áo",
+      "cost": 923591,
+      "quantity": 33,
+      "note": "Pressure benefit family check common..."
+    },
+    {
+      "id": "16",
+      "date": "13/04/2025",
+      "expenseType": "Chi phí bảo trì",
+      "cost": 367745,
+      "quantity": null,
+      "note": "Hand seven vote teacher water..."
+    },
+    {
+      "id": "17",
+      "date": "28/03/2025",
+      "expenseType": "Chi phí bảo trì",
+      "cost": 129820,
+      "quantity": 89,
+      "note": "Discover war tell surface..."
+    },
+    {
+      "id": "18",
+      "date": "22/04/2025",
+      "expenseType": "Phí điện nước",
+      "cost": 470216,
+      "quantity": 60,
+      "note": "Business short lawyer range quality..."
+    },
+    {
+      "id": "19",
+      "date": "30/03/2025",
+      "expenseType": "Túi gói hàng niêm phong",
+      "cost": 812416,
+      "quantity": null,
+      "note": "Option recent rate risk will group..."
+    },
+    {
+      "id": "20",
+      "date": "27/03/2025",
+      "expenseType": "Phí hoàn hàng",
+      "cost": 753296,
+      "quantity": null,
+      "note": "Upon staff prepare scientist scene..."
+    },
+    {
+      "id": "21",
+      "date": "09/03/2025",
+      "expenseType": "Chi phí vận chuyển",
+      "cost": 508137,
+      "quantity": null,
+      "note": "Always develop term..."
+    },
+    {
+      "id": "22",
+      "date": "06/04/2025",
+      "expenseType": "Mua sắm văn phòng phẩm",
+      "cost": 373400,
+      "quantity": 22,
+      "note": "Rather both PM represent begin..."
+    },
+    {
+      "id": "23",
+      "date": "01/05/2025",
+      "expenseType": "Chi phí marketing",
+      "cost": 927512,
+      "quantity": null,
+      "note": "Less professional ok early write..."
+    },
+    {
+      "id": "24",
+      "date": "09/03/2025",
+      "expenseType": "Kép",
+      "cost": 455279,
+      "quantity": null,
+      "note": "Now early conference on fact..."
+    },
+    {
+      "id": "25",
+      "date": "09/02/2025",
+      "expenseType": "Kép",
+      "cost": 633103,
+      "quantity": null,
+      "note": "While coach summer health..."
+    },
+    {
+      "id": "26",
+      "date": "15/04/2025",
+      "expenseType": "Kép",
+      "cost": 932851,
+      "quantity": null,
+      "note": "Model better free man..."
+    },
+    {
+      "id": "27",
+      "date": "01/02/2025",
+      "expenseType": "Phí hoàn hàng",
+      "cost": 810928,
+      "quantity": null,
+      "note": "Position culture impact employee..."
+    },
+    {
+      "id": "28",
+      "date": "31/01/2025",
+      "expenseType": "Chi phí bảo trì",
+      "cost": 558109,
+      "quantity": null,
+      "note": "Live what bill feel generation..."
+    },
+    {
+      "id": "29",
+      "date": "15/02/2025",
+      "expenseType": "Chi phí marketing",
+      "cost": 443542,
+      "quantity": null,
+      "note": "Week building fight every..."
+    },
+    {
+      "id": "30",
+      "date": "18/02/2025",
+      "expenseType": "Chi phí marketing",
+      "cost": 277100,
+      "quantity": null,
+      "note": "Through professional system recent..."
+    },
+    {
+      "id": "eb76",
+      "date": "08/05/2025",
+      "expenseType": "ád",
+      "cost": 12312312,
+      "quantity": 1,
+      "note": "12"
+    }
+  ]
+}
