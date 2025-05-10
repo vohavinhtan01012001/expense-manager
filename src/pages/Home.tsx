@@ -203,6 +203,7 @@ export default function Home() {
             columns={columns}
             data={expenses}
             className="h-full"
+            scroll={{ x: 300, y: 400 }}
           />
         </div>
       </div>

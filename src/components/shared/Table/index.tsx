@@ -5,6 +5,7 @@ interface ReusableTableProps<T> extends TableProps<T> {
   data: T[];
   columns: TableProps<T>["columns"];
   rowKey?: string;
+  showInternalPagination?: boolean;
   currentPage?: number;
   totalCount?: number;
   pageSize?: number;
@@ -14,6 +15,7 @@ interface ReusableTableProps<T> extends TableProps<T> {
 function Table<T extends object>({
   data,
   columns,
+  showInternalPagination = false,
   rowKey = "id",
   currentPage = 1,
   pageSize = 10,
@@ -26,14 +28,12 @@ function Table<T extends object>({
       dataSource={data}
       columns={columns}
       rowKey={rowKey}
-      pagination={{
+      pagination={showInternalPagination ? {
         current: currentPage,
         pageSize: pageSize,
         total: totalCount,
         onChange: onPageChange,
-      }}
-      scroll={{ x: 2000, y: 400 }}
-      virtual
+      } : undefined}
       className="no-vertical-border"
       {...rest}
     />
