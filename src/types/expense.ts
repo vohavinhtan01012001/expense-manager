@@ -6,3 +6,5 @@ export type ExpenseType = {
     quantity: number;
     note?: string;
 }
+
+

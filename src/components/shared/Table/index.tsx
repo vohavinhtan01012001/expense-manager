@@ -5,12 +5,20 @@ interface ReusableTableProps<T> extends TableProps<T> {
   data: T[];
   columns: TableProps<T>["columns"];
   rowKey?: string;
+  currentPage?: number;
+  totalCount?: number;
+  pageSize?: number;
+  onPageChange?: (page: number, pageSize: number) => void;
 }
 
 function Table<T extends object>({
   data,
   columns,
-  rowKey = "id", 
+  rowKey = "id",
+  currentPage = 1,
+  pageSize = 10,
+  totalCount = 0,
+  onPageChange,
   ...rest
 }: ReusableTableProps<T>) {
   return (
@@ -18,7 +26,14 @@ function Table<T extends object>({
       dataSource={data}
       columns={columns}
       rowKey={rowKey}
-      pagination={{ pageSize: 10 }}
+      pagination={{
+        current: currentPage,
+        pageSize: pageSize,
+        total: totalCount,
+        onChange: onPageChange,
+      }}
+      scroll={{ x: 2000, y: 400 }}
+      virtual
       className="no-vertical-border"
       {...rest}
     />

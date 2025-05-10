@@ -19,6 +19,7 @@ export default function Home() {
       dataIndex: "date",
       key: "date",
       width: 120,
+      fixed: "left",
     },
     {
       title: "Loại Chi Phí",
@@ -69,6 +70,7 @@ export default function Home() {
     {
       title: "Actions",
       key: "actions",
+      fixed: 'right',
       width: 120,
       render: (_, record) => (
         <Space size="small">
@@ -88,23 +90,23 @@ export default function Home() {
       ),
     },
   ];
+  const fetchExpenses = async () => {
+    try {
+      const data = await expenseApi.fetchExpenses();
+      setExpenses(data);
+      setExpenses(
+        data.sort((a, b) =>
+          dayjs(b.date, "DD/MM/YYYY").diff(dayjs(a.date, "DD/MM/YYYY"))
+        )
+      );
+    } catch (error) {
+      console.error("Failed to fetch expenses:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchExpenses = async () => {
-      try {
-        const data = await expenseApi.getExpenses();
-        setExpenses(
-          data.sort((a, b) =>
-            dayjs(b.date, "DD/MM/YYYY").diff(dayjs(a.date, "DD/MM/YYYY"))
-          )
-        );
-      } catch (error) {
-        console.error("Failed to fetch expenses:", error);
-      }
-    };
     fetchExpenses();
   }, []);
-
 
   const handleDelete = (id: string) => {
     Modal.confirm({
