@@ -1,9 +1,9 @@
-import React from 'react'
+import { Outlet } from 'react-router-dom'
 
-export default function DefaultLayout({ children }: { children: React.ReactNode }) {
+export default function DefaultLayout() {
     return (
         <div className='bg-gray-50'>
-            {children}
+            <Outlet />
         </div>
     )
 }

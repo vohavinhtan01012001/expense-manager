@@ -46,30 +46,30 @@ export default function Home() {
         </div>
       ),
     },
-      {
-      title: "Số Lượng (cái)",
-      dataIndex: "quantity",
-      key: "quantity",
-      width: 130,
-      align: "center",
-      render: (value?: number) => value ?? "-",
-    },
-    {
-      title: "Ghi Chú",
-      dataIndex: "note",
-      key: "note",
-      render: (text: string) => {
-        return text.split('\n').map((line, i) => (
-          <div key={i}>
-            {line.startsWith("- ") ? (
-              <div style={{ paddingLeft: 16 }}>{line}</div>
-            ) : (
-              line
-            )}
-          </div>
-        ));
-      },
-    },
+    //   {
+    //   title: "Số Lượng (cái)",
+    //   dataIndex: "quantity",
+    //   key: "quantity",
+    //   width: 130,
+    //   align: "center",
+    //   render: (value?: number) => value ?? "-",
+    // },
+    // {
+    //   title: "Ghi Chú",
+    //   dataIndex: "note",
+    //   key: "note",
+    //   render: (text: string) => {
+    //     return text.split('\n').map((line, i) => (
+    //       <div key={i}>
+    //         {line.startsWith("- ") ? (
+    //           <div style={{ paddingLeft: 16 }}>{line}</div>
+    //         ) : (
+    //           line
+    //         )}
+    //       </div>
+    //     ));
+    //   },
+    // },
     {
       title: "Số Lượng (cái)",
       dataIndex: "quantity",
@@ -227,7 +227,7 @@ export default function Home() {
             columns={columns}
             data={expenses}
             className="h-full"
-            scroll={{ x: 2000, y: 400 }}
+            // scroll={{ x: 2000, y: 400 }}
           />
         </div>
       </div>
