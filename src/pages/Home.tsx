@@ -4,9 +4,9 @@ import Table from "../components/shared/Table";
 import type { ColumnsType } from "antd/es/table";
 import type { ExpenseType } from "../types/expense";
 import { useEffect, useState } from "react";
-import { expenseApi } from "../api/expenses";
 import ExpenseModal from "../components/features/home/ExpenseModal";
 import dayjs from 'dayjs';
+import { addExpense, deleteExpense, fetchExpenses, updateExpense } from "../api/expenses";
 
 
 export default function Home() {
@@ -46,30 +46,6 @@ export default function Home() {
         </div>
       ),
     },
-    //   {
-    //   title: "Số Lượng (cái)",
-    //   dataIndex: "quantity",
-    //   key: "quantity",
-    //   width: 130,
-    //   align: "center",
-    //   render: (value?: number) => value ?? "-",
-    // },
-    // {
-    //   title: "Ghi Chú",
-    //   dataIndex: "note",
-    //   key: "note",
-    //   render: (text: string) => {
-    //     return text.split('\n').map((line, i) => (
-    //       <div key={i}>
-    //         {line.startsWith("- ") ? (
-    //           <div style={{ paddingLeft: 16 }}>{line}</div>
-    //         ) : (
-    //           line
-    //         )}
-    //       </div>
-    //     ));
-    //   },
-    // },
     {
       title: "Số Lượng (cái)",
       dataIndex: "quantity",
@@ -117,9 +93,9 @@ export default function Home() {
       ),
     },
   ];
-  const fetchExpenses = async () => {
+  const getExpenses = async () => {
     try {
-      const data = await expenseApi.fetchExpenses();
+      const data = await fetchExpenses();
       setExpenses(data);
       setExpenses(
         data.sort((a, b) =>
@@ -132,7 +108,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    fetchExpenses();
+    getExpenses();
   }, []);
 
   const handleDelete = (id: string) => {
@@ -144,7 +120,7 @@ export default function Home() {
       },
       onOk: async () => {
         try {
-          await expenseApi.deleteExpense(id);
+          await deleteExpense(id);
           setExpenses(expenses.filter((expense) => expense.id !== id));
           notification.success({
             message: "Thành công",
@@ -176,13 +152,13 @@ export default function Home() {
           ...values,
         };
 
-        result = await expenseApi.updateExpense(selectedExpense.id, updatedData);
+        result = await updateExpense(selectedExpense.id, updatedData);
         notification.success({
           message: "Cập nhật thành công",
           description: "Chi phí đã được cập nhật.",
         });
       } else {
-        result = await expenseApi.addExpense(values);
+        result = await addExpense(values);
         notification.success({
           message: "Thêm mới thành công",
           description: "Chi phí mới đã được thêm.",

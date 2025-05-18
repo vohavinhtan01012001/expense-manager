@@ -1,16 +1,14 @@
 import { Button } from "antd";
 import dayjs from "dayjs";
 import Modal from "../../shared/Modal";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { expenseSchema, type ExpenseFormType } from "../../../libs/zod/expense";
 import { zodResolver } from "@hookform/resolvers/zod";
-import DatePickerField from "../../shared/DatePickerField";
-import Input from "../../shared/Input";
-import InputNumberField from "../../shared/InputNumberField";
 import { FORMAT_MONEY } from "../../../constants/regex";
 import { useEffect, useMemo } from "react";
 import type { ExpenseType } from "../../../types/expense";
 import customParseFormat from 'dayjs/plugin/customParseFormat';
+import { createFormController } from "@/libs/utils";
 
 dayjs.extend(customParseFormat);
 
@@ -21,6 +19,8 @@ interface ExpenseModalProps {
     onSubmit?: (data: ExpenseType) => void;
 }
 
+
+const TypedFormController = createFormController<ExpenseFormType>();
 const ExpenseModal: React.FC<ExpenseModalProps> = ({
     open,
     onClose,
@@ -74,96 +74,68 @@ const ExpenseModal: React.FC<ExpenseModalProps> = ({
         >
             <form onSubmit={handleSubmit(onFormSubmit)}>
                 <div className="mb-4">
-                    <Controller
+                    <TypedFormController
                         name="date"
                         control={control}
-                        render={({ field }) => (
-                            <DatePickerField
-                                label="Ngày chi (dd/mm/yyyy)"
-                                placeholder="Chọn ngày chi"
-                                required
-                                {...field}
-                                error={errors.date?.message}
-                            />
-                        )}
+                        label="Ngày chi (dd/mm/yyyy)"
+                        placeholder="Chọn ngày chi"
+                        type="date"
+                        required
+                        error={errors.date?.message}
                     />
                 </div>
-
                 <div className="mb-4">
-                    <Controller
+                    <TypedFormController
                         name="expenseType"
                         control={control}
-                        render={({ field }) => (
-                            <Input
-                                label="Loại chi phí"
-                                required
-                                placeholder="Nhập loại chi phí"
-                                rows={2}
-                                textarea
-                                {...field}
-                                error={errors.expenseType?.message}
-                            />
-                        )}
+                        label="Loại chi phí"
+                        placeholder="Nhập loại chi phí"
+                        type="textarea"
+                        rows={2}
+                        required
+                        error={errors.expenseType?.message}
                     />
                 </div>
 
                 <div className="mb-4">
-                    <Controller
+                    <TypedFormController
                         name="cost"
                         control={control}
-                        render={({ field }) => (
-                            <div>
-                                <InputNumberField
-                                    {...field}
-                                    label="Số tiền (vnđ)"
-                                    required
-                                    className="!w-full"
-                                    min={0}
-                                    placeholder="Nhập số tiền"
-                                    formatter={(value) => (value ? `${value}`.replace(FORMAT_MONEY, ",") : "")}
-                                    error={errors.cost?.message}
-                                />
-                            </div>
-                        )}
+                        label="Số tiền (vnđ)"
+                        placeholder="Nhập số tiền"
+                        type="number"
+                        min={0}
+                        required
+                        error={errors.cost?.message}
+                        formatter={(value) =>
+                            value ? `${value}`.replace(FORMAT_MONEY, ",") : ""
+                        }
                     />
                 </div>
 
                 <div className="mb-4">
-                    <Controller
+                    <TypedFormController
                         name="quantity"
                         control={control}
-                        render={({ field }) => (
-                            <div>
-                                <InputNumberField
-                                    {...field}
-                                    label="Số lượng (Cái)"
-                                    required
-                                    className="!w-full"
-                                    min={1}
-                                    placeholder="1"
-                                    error={errors.quantity?.message}
-                                />
-                            </div>
-                        )}
+                        label="Số lượng (Cái)"
+                        placeholder="1"
+                        type="number"
+                        min={1}
+                        required
+                        error={errors.quantity?.message}
                     />
                 </div>
 
                 <div className="mb-4">
-                    <Controller
+                    <TypedFormController
                         name="note"
                         control={control}
-                        render={({ field }) => (
-                            <Input
-                                label="Ghi chú"
-                                placeholder="Nhập ghi chú (nếu có)"
-                                textarea
-                                rows={3}
-                                {...field}
-                            />
-                        )}
+                        label="Ghi chú"
+                        placeholder="Nhập ghi chú (nếu có)"
+                        type="textarea"
+                        rows={3}
                     />
                 </div>
-
                 <div className="flex justify-end gap-2 pt-2">
                     <Button onClick={handleCancel}>Hủy</Button>
                     <Button variant="solid" color="cyan" htmlType="submit">
